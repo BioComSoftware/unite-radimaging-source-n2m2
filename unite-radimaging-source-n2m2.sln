@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{5F12C211-4C4A-4554-8674-0D4E178874F5}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{5F12C211-4C4A-4554-8674-0D4E178874F5}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{F42F72EB-3E59-420F-86F6-962936928906}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.API", "Services\Catalog\Catalog.API\Catalog.API.csproj", "{1CF3A858-7F08-4518-AAAB-2DC112BFC7FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "unite-radimaging-source-n2m2", "Services\Catalog\Catalog.API\unite-radimaging-source-n2m2.csproj", "{1CF3A858-7F08-4518-AAAB-2DC112BFC7FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,8 +22,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{F42F72EB-3E59-420F-86F6-962936928906} = {5F12C211-4C4A-4554-8674-0D4E178874F5}
-		{1CF3A858-7F08-4518-AAAB-2DC112BFC7FE} = {F42F72EB-3E59-420F-86F6-962936928906}
+		{1CF3A858-7F08-4518-AAAB-2DC112BFC7FE} = {5F12C211-4C4A-4554-8674-0D4E178874F5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8964EB6A-BB18-4EC6-AE45-09CF76383BF8}

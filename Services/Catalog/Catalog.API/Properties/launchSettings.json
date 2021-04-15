@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Catalog.API": {
+    "unite.radimaging.source.n2m2": {
       "commandName": "Project",
       "launchUrl": "swagger",
       "environmentVariables": {

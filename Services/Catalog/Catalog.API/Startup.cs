@@ -1,5 +1,5 @@
-using Catalog.API.Data;
-using Catalog.API.Repositories;
+using unite.radimaging.source.n2m2.Data;
+using unite.radimaging.source.n2m2.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Catalog.API {
+namespace unite.radimaging.source.n2m2 {
     public class Startup {
         public Startup(IConfiguration configuration) {
             Configuration = configuration;
@@ -28,7 +28,7 @@ namespace Catalog.API {
             services.AddControllers();
             //services.AddSwaggerGen(c => {
                 //c.SwaggerDoc("v1", new OpenApiInfo {
-                    //Title = "Catalog.API",
+                    //Title = "unite.radimaging.source.n2m2",
                     //Version = "v1"
                 //});
             //}
@@ -44,12 +44,14 @@ namespace Catalog.API {
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
                 //app.UseSwagger();
-                //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Catalog.API v1"));
+                //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "unite.radimaging.source.n2m2 v1"));
             }
 
             app.UseRouting();
             app.UseAuthorization();
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints => { 
+                endpoints.MapControllers(); 
+            });
         }
     }
 }

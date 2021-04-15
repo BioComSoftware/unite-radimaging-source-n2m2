@@ -1,13 +1,12 @@
-﻿using Catalog.API.Entities;
+﻿using unite.radimaging.source.n2m2.Entities;
 using MongoDB.Driver; 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Catalog.API.Data {
+namespace unite.radimaging.source.n2m2.Data {
     public interface ICatalogContext {
         IMongoCollection<Product> Products { get; }
-
     }
 } 

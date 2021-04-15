@@ -1,5 +1,5 @@
-﻿using Catalog.API.Entities;
-using Catalog.API.Repositories;
+﻿using unite.radimaging.source.n2m2.Entities;
+using unite.radimaging.source.n2m2.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace Catalog.API.Controllers {
+namespace unite.radimaging.source.n2m2.Controllers {
     [ApiController]
     [Route("api/v1/[controller]")]
     public class CatalogController : ControllerBase {

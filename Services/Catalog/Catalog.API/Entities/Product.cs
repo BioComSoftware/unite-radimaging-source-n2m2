@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Catalog.API.Entities {
+namespace unite.radimaging.source.n2m2.Entities {
     public class Product {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]

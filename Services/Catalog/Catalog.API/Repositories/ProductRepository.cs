@@ -1,12 +1,12 @@
-﻿using Catalog.API.Data;
-using Catalog.API.Entities;
+﻿using unite.radimaging.source.n2m2.Data;
+using unite.radimaging.source.n2m2.Entities;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Catalog.API.Repositories {
+namespace unite.radimaging.source.n2m2.Repositories {
     public class ProductRepository : IProductRepository {
         private readonly ICatalogContext _context; 
         public ProductRepository(ICatalogContext context) {
@@ -14,7 +14,7 @@ namespace Catalog.API.Repositories {
         }
 
         public async Task<IEnumerable<Product>> GetProducts() {
-            Console.WriteLine("Catalog.API.Repositories.GetProductsGathering products...");
+            Console.WriteLine("unite.radimaging.source.n2m2.Repositories.GetProductsGathering products...");
             return await _context.Products.Find(p => true).ToListAsync();
         }
 
