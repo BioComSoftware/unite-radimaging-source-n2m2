@@ -9,8 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace Unite.Annotations.VEP.Web.Controllers {
     [Route("/api/v1/[controller]")]
     public class TestCSVController : Controller {
-        string Filename = @"D:\Users\right\Documents\Work\DKFZ\Projects\UNITE\Image data\AW__MRI_feature_indexing\Indexing_data.csv";
-
+        string Filename = @"C:\Users\right\Documents\Work\DKFZ\Projects\UNITE\Image data\AW__MRI_feature_indexing\Indexing_data.csv";
+        //string Filename = "breaksit";
         [HttpGet]
         public IActionResult Get() {
             var teststr = MRIFeaturesCSVParser.CSVFiletoJSON(Filename);

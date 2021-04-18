@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.31112.23
+VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{5F12C211-4C4A-4554-8674-0D4E178874F5}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "unite-radimaging-source-n2m2", "Services\Catalog\Catalog.API\unite-radimaging-source-n2m2.csproj", "{1CF3A858-7F08-4518-AAAB-2DC112BFC7FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "unite.radimaging.source.n2m2", "unite.radimaging.source.n2m2.csproj", "{824B4A4A-AADD-48D8-975B-65D845FB5AF0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,18 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1CF3A858-7F08-4518-AAAB-2DC112BFC7FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1CF3A858-7F08-4518-AAAB-2DC112BFC7FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1CF3A858-7F08-4518-AAAB-2DC112BFC7FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1CF3A858-7F08-4518-AAAB-2DC112BFC7FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{824B4A4A-AADD-48D8-975B-65D845FB5AF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{824B4A4A-AADD-48D8-975B-65D845FB5AF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{824B4A4A-AADD-48D8-975B-65D845FB5AF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{824B4A4A-AADD-48D8-975B-65D845FB5AF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{1CF3A858-7F08-4518-AAAB-2DC112BFC7FE} = {5F12C211-4C4A-4554-8674-0D4E178874F5}
-	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {8964EB6A-BB18-4EC6-AE45-09CF76383BF8}
+		SolutionGuid = {D45AFB5F-250C-4276-8419-7A98B6B29E5A}
 	EndGlobalSection
 EndGlobal
