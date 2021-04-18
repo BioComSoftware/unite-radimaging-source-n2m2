@@ -57,7 +57,7 @@ namespace unite.radimaging.source.n2m2.HostedServices {
                         Checksum = FileChecksum.getChecksum(filename)
                     };
                     //var  test = await _repository.GetFiles(); 
-                    _existingFile = _repository.GetFileByPath(_current_path);
+                    _existingFile = await _repository.GetFileByPath(_current_path);
 
                     Console.WriteLine("==========================");
                     Console.WriteLine($"_current_file: {_foundFile.Path}");
