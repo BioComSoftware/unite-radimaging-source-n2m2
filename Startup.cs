@@ -27,8 +27,8 @@ namespace unite.radimaging.source.n2m2 {
 
             services.AddControllers();
 
-            //services.AddScoped<IFoundFileContext, FoundFileContext>();
-            //services.AddScoped<IFoundFileRepository, FoundFileRepository>();
+            services.AddScoped<IFoundFileContext, FoundFileContext>();
+            services.AddScoped<IFoundFileRepository, FoundFileRepository>();
         }
 
         // This method gets called by the runtime.

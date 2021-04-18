@@ -13,14 +13,18 @@ using Microsoft.Extensions.Logging;
 namespace unite.radimaging.source.n2m2.HostedServices {
     public class FileSearchHostedService : BackgroundService {
         private readonly IConfiguration _configuration;
-        private readonly IFoundFileRepository _repository;
+        private IFoundFileRepository _repository;
 
         public FileSearchHostedService(
-            //IFoundFileRepository repository,
+            IFoundFileRepository repository,
             IConfiguration configuration
             ) {
-            //_repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+
+            //FoundFileContext FoundfileContext = new FoundFileContext(_configuration); // Normal instantiation, in leiu of injection
+            //FoundFileRepository FoundFileRepo = new FoundFileRepository(FoundfileContext);  // Normal instantiation, in leiu of injection
+
         }
 
         protected override async Task ExecuteAsync(CancellationToken cancellationToken) {
@@ -53,7 +57,8 @@ namespace unite.radimaging.source.n2m2.HostedServices {
                         Checksum = FileChecksum.getChecksum(filename)
                     };
                     //var  test = await _repository.GetFiles(); 
-                    //_existingFile = _repository.GetFileByPath(_current_path);
+                    _existingFile = _repository.GetFileByPath(_current_path);
+
                     Console.WriteLine("==========================");
                     Console.WriteLine($"_current_file: {_foundFile.Path}");
                     Console.WriteLine($"checksum: {_foundFile.Checksum}");
