@@ -13,18 +13,14 @@ using Microsoft.Extensions.Logging;
 namespace unite.radimaging.source.n2m2.HostedServices {
     public class FileSearchHostedService : BackgroundService {
         private readonly IConfiguration _configuration;
-        private IFoundFileRepository _repository;
+        //private IFoundFileRepository _repository;
 
         public FileSearchHostedService(
-            IFoundFileRepository repository,
+            //IFoundFileRepository repository,
             IConfiguration configuration
             ) {
-            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            //_repository = repository ?? throw new ArgumentNullException(nameof(repository));
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
-
-            //FoundFileContext FoundfileContext = new FoundFileContext(_configuration); // Normal instantiation, in leiu of injection
-            //FoundFileRepository FoundFileRepo = new FoundFileRepository(FoundfileContext);  // Normal instantiation, in leiu of injection
-
         }
 
         protected override async Task ExecuteAsync(CancellationToken cancellationToken) {
@@ -37,8 +33,9 @@ namespace unite.radimaging.source.n2m2.HostedServices {
             FileInfo _current_file;
             FoundFile _foundFile;
             FoundFile _existingFile;
-            //IFoundFileContext _context;
-            //FoundFileRepository _repository = new FoundFileRepository(IFoundFileContext context);
+            FoundFile _addFoundFile;
+            FoundFileContext FoundfileContext = new FoundFileContext(_configuration); // Normal instantiation, in leiu of injection
+            FoundFileRepository _repository = new FoundFileRepository(FoundfileContext);  // Normal instantiation, in leiu of injection
 
             while (!cancellationToken.IsCancellationRequested) {
                 Log.Information("Searching files...");
@@ -56,15 +53,31 @@ namespace unite.radimaging.source.n2m2.HostedServices {
                         Mtime = _current_file.LastWriteTime,
                         Checksum = FileChecksum.getChecksum(filename)
                     };
-                    //var  test = await _repository.GetFiles(); 
-                    _existingFile = _repository.GetFileByPath(_current_path);
-
                     Console.WriteLine("==========================");
-                    Console.WriteLine($"_current_file: {_foundFile.Path}");
-                    Console.WriteLine($"checksum: {_foundFile.Checksum}");
-                    Console.WriteLine($"_current_file.Length = {_foundFile.Size}");
-                    Console.WriteLine($"_current_file.LastWriteTime = ({_foundFile.Mtime}");
-                    Console.WriteLine($"_current_file.Attributes = {_current_file.Attributes}");
+                    _existingFile = await _repository.GetFileByPath (_current_path);
+                    Console.WriteLine("past _repository.GetFileByPath");
+
+                    try {
+                        Console.WriteLine($"{_existingFile.Path} exists!!!");
+                        Console.WriteLine($"     _existingFile.Checksum: {_existingFile.Checksum}");
+                        Console.WriteLine($"     _existingFile.Length = {_existingFile.Size}");
+                        Console.WriteLine($"     _existingFile.LastWriteTime = ({_existingFile.Mtime}");
+                    }
+                    catch {
+                        Console.WriteLine($"Creating MongoDB for file {_foundFile.Path} ");
+                        _addFoundFile = new FoundFile() {
+                            Path = _foundFile.Path,
+                            Size = _foundFile.Size,
+                            Mtime = _foundFile.Mtime,
+                            Checksum = _foundFile.Checksum
+                        };
+                        await _repository.CreateFile(_addFoundFile);
+                        //Console.WriteLine($"_current_file: {_foundFile.Path}");
+                        //Console.WriteLine($"checksum: {_foundFile.Checksum}");
+                        //Console.WriteLine($"_current_file.Length = {_foundFile.Size}");
+                        //Console.WriteLine($"_current_file.LastWriteTime = ({_foundFile.Mtime}");
+                        //Console.WriteLine($"_current_file.Attributes = {_current_file.Attributes}");
+                    }
                 }
 
                 await Task.Delay(

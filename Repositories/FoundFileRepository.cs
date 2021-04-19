@@ -14,10 +14,10 @@ namespace unite.radimaging.source.n2m2.Repositories {
         }
 
         public async Task<IEnumerable<FoundFile>> GetFiles() {
-            return await _context
-                .FoundFiles
-                .Find(p => true)
-                .ToListAsync();
+        return await _context
+            .FoundFiles
+            .Find(p => true)
+            .ToListAsync();
         }
 
         public async Task<FoundFile> GetFile(string id) {
