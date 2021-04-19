@@ -16,6 +16,7 @@ namespace unite.radimaging.source.n2m2.Data {
 
             FoundFiles = database.GetCollection<FoundFile>(configuration.GetValue<string>("DatabaseSettings:CollectionName"));
             FoundFileContextseed.SeedData(FoundFiles);
+            Console.WriteLine("Past SeedData");
 
         }
         public IMongoCollection<FoundFile> FoundFiles { get; }
