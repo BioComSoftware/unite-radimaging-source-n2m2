@@ -1,11 +1,8 @@
 ﻿using System.Security.Cryptography;
 using System;
 using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace unite.radimaging.source.n2m2.Repositories {
+namespace unite.radimaging.source.n2m2.Services {
     public class FileChecksum {
 
         public static string getChecksum(string filename) {

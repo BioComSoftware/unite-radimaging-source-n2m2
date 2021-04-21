@@ -13,7 +13,7 @@ namespace unite.radimaging.source.n2m2.Repositories {
         // Buggy (errors in FoundFilerepository.cs) Enable if an when actually needed.
         //Task<IEnumerable<FoundFile>> GetFileByMtime(string mtime);
         //Task<IEnumerable<FoundFile>> GetFileBySize(long size);
-        Task CreateFile(FoundFile foundFile);
+        Task<bool> CreateFile(FoundFile foundFile);
         Task<bool> UpdateFile(FoundFile foundFile);
         Task<bool> DeleteFile(FoundFile foundFile);
     }
