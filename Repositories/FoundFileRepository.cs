@@ -1,9 +1,9 @@
 ﻿using unite.radimaging.source.n2m2.Data;
 using unite.radimaging.source.n2m2.Entities;
+using Serilog;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace unite.radimaging.source.n2m2.Repositories {
@@ -60,28 +60,30 @@ namespace unite.radimaging.source.n2m2.Repositories {
         //                    .ToListAsync();
         //}
 
-        public async Task CreateFile(FoundFile foundFile) {
+        public async Task<bool> CreateFile(FoundFile foundFile) {
             await _context.FoundFiles.InsertOneAsync(foundFile);
+            // Dont know a better way to check yet //3333
+            if (await GetFileByPath(foundFile.Path) == null) return false;
+            else  return true;
         }
 
-        public async Task<bool> UpdateFile(FoundFile foundFile) {
-            // A proper update is failing for an unknown reason (no error. Just
-            //  not succeeding and returning false
-            // Use delete and create for now
-            /*var updateResult = await _context.FoundFiles.ReplaceOneAsync(
-                filter: g => g.Id == foundFile.Id, replacement: foundFile);
-            
-            return updateResult.IsAcknowledged && updateResult.ModifiedCount > 0;*/
+            public async Task<bool> UpdateFile(FoundFile foundFile) {
+            //// A proper update is failing for an unknown reason (no error. Just not succeeding and returning false
+            //// Use delete and create for now
+            //var updateResult = await _context.FoundFiles.ReplaceOneAsync(
+            //    filter: g => g.Id == foundFile.Id, replacement: foundFile);
+
+            //return updateResult.IsAcknowledged && updateResult.ModifiedCount > 0;
+
             Boolean _result;
             // Get the original file data first. If it fails, update should never have been called. 
             FoundFile _originalFoundFile = await this.GetFileByPath(foundFile.Path);
-            if (_originalFoundFile == null) { throw new ApplicationException("FoundFileRepository.UpdateFile could not obtain original document prior to updating. Halting. Are you shure you needed update and not CreateFile?");  }
+            if (_originalFoundFile == null) throw new ApplicationException("FoundFileRepository.UpdateFile could not obtain original document prior to updating. Halting. Are you shure you needed update and not CreateFile?"); 
 
             _result = await this.DeleteFile(foundFile);
-            if (!_result) { throw new ApplicationException("FoundFileRepository.UpdateFile could not successfully delete the document prior to updating. Halting."); }
-            
-            await this.CreateFile(foundFile);
-            return true; 
+            if (!_result) throw new ApplicationException("FoundFileRepository.UpdateFile could not successfully delete the document prior to updating. Halting.");
+
+            return await this.CreateFile(foundFile);
         }
 
         public async Task<bool> DeleteFile(FoundFile foundfile) {
@@ -92,7 +94,12 @@ namespace unite.radimaging.source.n2m2.Repositories {
                                                 .FoundFiles
                                                 .DeleteOneAsync(filter);
 
-            return deleteResult.IsAcknowledged && deleteResult.DeletedCount > 0;
+                if (deleteResult.IsAcknowledged && deleteResult.DeletedCount > 0) {
+                    return true;
+                }
+                else {
+                    return false; 
+                }
         }
     }
 }
