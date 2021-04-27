@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 namespace unite.radimaging.source.n2m2.Services {
     public class ProcessFile {
         private readonly IConfiguration _configuration;
-        private FoundFileRepository _repository;
+        private FoundFileRepository    _repository;
         private ProcessMriFeaturesFile processMriFeaturesFile;
-        private ProcessCtFeaturesFile processCtFeaturesFile;
+        private ProcessCtFeaturesFile  processCtFeaturesFile;
         private Regex Mripattern;
         private Regex Ctpattern;
 
@@ -20,8 +20,8 @@ namespace unite.radimaging.source.n2m2.Services {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
             processMriFeaturesFile = new ProcessMriFeaturesFile(_configuration, _repository);
             processCtFeaturesFile = new ProcessCtFeaturesFile(_configuration, _repository);
-            Mripattern = new Regex(@"^.*Indexing_data.csv$");
-            Ctpattern  = new Regex(@"^.*UNITE_example_Radiomics.csv$");
+            Mripattern = new Regex(_configuration.GetValue<string>("FileSearchSettings:Mripattern"));
+            Ctpattern = new Regex(_configuration.GetValue<string>("FileSearchSettings:Ctpattern"));
         }
 
         public async Task<Boolean> ProcessNew(FoundFile foundFile) {

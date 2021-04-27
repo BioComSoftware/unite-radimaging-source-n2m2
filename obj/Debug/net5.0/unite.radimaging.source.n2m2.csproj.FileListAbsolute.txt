@@ -1,3 +1,4 @@
+/mnt/hgfs/Documents/Work/DKFZ/VisualStudioWorkspace/UNITE/unite-radimaging-source-n2m2/obj/Debug/net5.0/unite.radimaging.source.n2m2.pdb
 C:\Users\right\Documents\Work\DKFZ\VisualStudioWorkspace\UNITE\unite-radimaging-source-n2m2\bin\Debug\net5.0\appsettings.Development.json
 C:\Users\right\Documents\Work\DKFZ\VisualStudioWorkspace\UNITE\unite-radimaging-source-n2m2\bin\Debug\net5.0\appsettings.json
 C:\Users\right\Documents\Work\DKFZ\VisualStudioWorkspace\UNITE\unite-radimaging-source-n2m2\bin\Debug\net5.0\unite.radimaging.source.n2m2.exe

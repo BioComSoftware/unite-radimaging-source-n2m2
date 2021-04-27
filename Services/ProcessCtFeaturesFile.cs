@@ -9,11 +9,11 @@ namespace unite.radimaging.source.n2m2.Services {
     public class ProcessCtFeaturesFile : SendMriFeatures {
         private readonly IConfiguration _configuration;
         private IFoundFileRepository _repository;
-        private string _msg; 
+        private string _msg;
 
         public ProcessCtFeaturesFile(IConfiguration configuration, FoundFileRepository repository) {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
-            _repository    = repository ?? throw new ArgumentNullException(nameof(repository));
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
         public async Task<Boolean> ProcessNew(FoundFile foundFile) {
@@ -37,15 +37,14 @@ namespace unite.radimaging.source.n2m2.Services {
             return await Process(foundFile);
         }
 
-        private async Task<Boolean> Process (FoundFile foundFile) {
-            Log.Debug($"Pretending to process '{foundFile.Path}' as a CT scan.");
-            return true;
+        private async Task<Boolean> Process(FoundFile foundFile) {
 
-            /*_msg = $"Processing '{foundFile.Path}' to JSON and sending ...";
+            _msg = $"Processing '{foundFile.Path}' to JSON and sending ...";
+
             try {
-                string _json = MriFeaturesToJson.MriFeaturestoJSON(foundFile.Path);
+                string _json = CtFeaturesToJson.CtFeaturestoJSON(foundFile.Path);
 
-                if (!await SendMriFeatures.Send(_json)) throw new Exception($"SendMriFeatures.Send returned unsuccessful.");
+                if (!await SendCtFeatures.Send(_json)) throw new Exception($"SendCtFeatures.Send returned unsuccessful.");
                 Log.Debug(_msg + "OK");
                 return true;
             }
@@ -59,7 +58,8 @@ namespace unite.radimaging.source.n2m2.Services {
                 else {
                     Log.Error(_msg + "FAILED! Fatal Error.");
                     throw new Exception("FATAL ERROR accessing DB.");
-            }*/
+                }
+            }
         }
     }
 }
